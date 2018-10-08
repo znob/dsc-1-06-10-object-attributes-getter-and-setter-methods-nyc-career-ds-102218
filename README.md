@@ -1,13 +1,16 @@
 
-# Object Attributes | Setters & Getters
+# Object Attributes - Setter and Getter Methods
 
 ## Introduction
 We have now covered Python classes, instance objects, instance methods, and instance variables. Now that we know what these things are and how they work together, we need to think about how we *want* these parts of our program to work together. Said another way, we need to think about making our programs a bit more secure and prevent users from making unwanted changes or creating bad data. To that effect, we will want to use design patterns for creating private instance variables or defining instance methods that provide ways to update instance variables indirectly. These methods are called setters and getters, because they both read and write (get and set) the private instance variable information we would like to access. Let's get started!
 
 ## Objectives
-* Private instance variables
-* Setter and Getter methods
-* Properties
+
+You will be able to: 
+
+* Create private instance variables
+* Understand setter and getter methods
+* Understand properties
 
 ## Private Instance Variables
 Let's take the example of a bank account. Now, when we think about (or try not to think about) going to the bank and opening an account, terms, fees, and regulations all come to mind. You have to have a minimum balance to open your account, you need to maintain a certain balance, you cannot overdraft your account without incurring a fee, etc. All of those things, current balance, balance minimum, max withdrawal amount, over draft fees can call be thought about as attributes of a bank account. If you know of a bank that doesn't have these *attributes*, **please** let the rest of us know.
@@ -30,7 +33,7 @@ print (vars(new_account))
 ```
 
     {'balance': 1000, 'minimum_balance': 250, 'max_withdrawal': 150}
-    
+
 
 We have a new bank account and it's already burning a whole in our digital pockets... So, let's take some money out and go on a shopping spree!
 
@@ -48,7 +51,7 @@ print(vars(new_account))
 ```
 
     {'balance': 150, 'minimum_balance': 250, 'max_withdrawal': 150}
-    
+
 
 Alright, woah. First of all, we need to get our spending under control. Second, we broke all the terms and regulations of our new bank account... So, that's not good. Perhaps if our bank acoount's program was a bit more secure we wouldn't be down $750.
 
@@ -76,7 +79,7 @@ print (vars(new_account))
 ```
 
     {'_balance': 1000, '_minimum_balance': 250, '_max_withdrawal': 150}
-    
+
 
 Great! We have our instance variables set up so that we are indicating that they are *private* and therefore should not be accessed directly by a user or another program. Instead, to update these attributes we'll need intance methods called **setters and getters**.
 
@@ -156,7 +159,7 @@ print("10.", vars(account_two))
     8. Thank you for the deposit of $2.5. Your balance is now: $1152.5
     9. hello is not a number
     10. {'_balance': 1152.5, '_minimum_balance': 250, '_max_withdrawal': 150}
-    
+
 
 Okay, so, we now have methods that allow us to change our account balance without having to access the account balance directly. On top of that, we have other instance methods that are preventing someone from making an unwanted or an unallowed action. Note that with our refactored class, we have changed our instance varaibles to have a leading `_` to signify that the variable is **private**.
 
@@ -257,7 +260,7 @@ print("10.", vars(account_three))
     8. Thank you for the deposit of $2.5. Your balance is now: $1152.5
     9. hello is not a number
     10. {'_balance': 1152.5, '_minimum_balance': 250, '_max_withdrawal': 150}
-    
+
 
 It is important to look closely at what has changed in our new class. We've added comments to point out the notable differences between our previous BankAccount class and this one. We also added print statements so that we can clearly see that our 'get_balance' and 'set_balance' methods are getting called even after we create our new balance *property*.
 
